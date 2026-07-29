@@ -3,6 +3,7 @@ import { Link } from '@/lib/router'
 import { AppIcon, Badge, Container, LinkButton, Button, Section, SectionTitle, ICON } from '@/components/ui'
 import { ScreenshotGallery } from '@/components/app/ScreenshotGallery'
 import { FeatureGrid, StepList, Faq, Changelog, FeedbackBox } from '@/components/app/Sections'
+import { UsageOptions } from '@/components/app/UsageOptions'
 import { storeIcon } from '@/components/app/AppCard'
 import {
   getApp,
@@ -178,7 +179,21 @@ export function AppDetailPage({ id }: { id: string }) {
         </Section>
       )}
 
-      {/* ── 4. 다운로드 / 시작하기 ── */}
+      {/* ── 4. 다운로드 / 시작하기 ──
+          PWA를 지원하는 웹 서비스는 "웹 / Windows / 앱으로 설치" 3가지
+          사용법을 나란히 보여주고, 그 외에는 기존 방식대로 보여줍니다. */}
+      {app.pwa ? (
+        <Section className="!py-14">
+          <Container>
+            <SectionTitle
+              title="사용 방법"
+              sub="사용 환경에 맞는 방식을 골라 시작하세요."
+              align="left"
+            />
+            <UsageOptions app={app} />
+          </Container>
+        </Section>
+      ) : (
       <Section className="!py-14">
         <Container>
           <div className="card mx-auto max-w-2xl p-8 text-center sm:p-10">
@@ -258,6 +273,7 @@ export function AppDetailPage({ id }: { id: string }) {
           </div>
         </Container>
       </Section>
+      )}
 
       {/* ── 5. 설치 방법 ── */}
       <Section className="!py-14">

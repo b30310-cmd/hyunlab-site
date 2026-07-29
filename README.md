@@ -111,6 +111,28 @@ export const APP_GROUPS: AppGroup[] = [
 ]
 ```
 
+### 웹 + Windows + PWA를 함께 제공하는 앱 (예: HYUNLAB Memo)
+
+`pwa: true` 를 넣으면 상세 페이지에 **"웹 / Windows / 앱으로 설치"** 3가지
+사용법이 나란히 나옵니다.
+
+```ts
+{
+  type: 'web',
+  webUrl: 'https://...',        // 웹 버전 주소
+  pwa: true,                    // ← 이 한 줄이 3-카드 안내를 켭니다
+  downloads: [
+    { platform: 'Windows', store: 'direct', url: '...' },  // 있으면 Windows 카드도 함께
+  ],
+}
+```
+
+> ⚠️ **"앱으로 설치" 버튼은 이 포털이 아니라 그 서비스 자신의 주소에서만
+> 동작합니다.** PWA 설치(`beforeinstallprompt`)는 브라우저 보안 정책상
+> 다른 오리진에서 대신 트리거할 수 없기 때문입니다. 그래서 이 버튼은
+> `webUrl`로 이동시킨 뒤, 그 안에 있는 진짜 설치 버튼을 누르도록 안내합니다.
+> (`hyunlab-memo` 프로젝트의 `src/hooks/useInstallPrompt.ts` 참고)
+
 ---
 
 ## 앱 아이콘

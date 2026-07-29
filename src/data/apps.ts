@@ -112,6 +112,14 @@ export interface AppEntry {
 
   /** 웹 서비스 주소 (type: 'web' 이면 이게 주 버튼이 됩니다) */
   webUrl?: string
+  /**
+   * 웹 버전이 PWA(앱으로 설치 가능)를 지원하는지.
+   * true면 상세 페이지에 "웹 / Windows / 앱으로 설치" 3가지 사용법이 나란히 나옵니다.
+   * PWA 설치는 그 서비스 자신의 오리진에서만 가능하므로(다른 도메인에서 대신
+   * 설치를 트리거할 수 없음), 버튼을 누르면 webUrl로 이동한 뒤 그 안에서
+   * 설치하도록 안내합니다.
+   */
+  pwa?: boolean
   /** 내려받기 대상들 */
   downloads?: DownloadTarget[]
 
@@ -255,6 +263,7 @@ export const APPS: AppEntry[] = [
     version: '1.0.0',
     updatedAt: '2026-07-29',
     webUrl: 'https://b30310-cmd.github.io/hyunlab-memo/app/',
+    pwa: true,
     repo: 'https://github.com/b30310-cmd/hyunlab-memo',
 
     // 웹이 기본이지만 Windows 설치 버전도 함께 제공합니다.

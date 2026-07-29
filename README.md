@@ -1,12 +1,32 @@
-# HYUNLAB 사이트
+# HYUNLAB 공식 홈페이지
 
-직접 만든 앱을 소개하고 배포하는 사이트입니다. 개인 앱 스토어 형태로 만들었습니다.
+HYUNLAB에서 만든 앱(HYUNLAB Memo, 한마디, 픽잇, 특수문자 연구소, 이야기숲)을
+소개하고 배포하는 **공식 운영 사이트**입니다. 개인 앱 스토어 형태로 만들었습니다.
+
+> 이전 HYUNLAB 홈페이지를 이 프로젝트로 대체합니다. 데모나 GitHub Pages용
+> 예제가 아니라 실제 운영을 전제로 합니다.
 
 ```bash
 npm install     # 처음 한 번만
 npm run dev     # 개발 (http://localhost:5174)
 npm run build   # 배포용 파일 만들기 → dist/
 ```
+
+## 배포
+
+Vercel 또는 Netlify에 Git 저장소를 연결하면 push할 때마다 자동 배포됩니다.
+필요한 설정 파일(`vercel.json`, `netlify.toml`)이 이미 준비되어 있습니다.
+
+1. 이 저장소를 GitHub 등 Git 호스팅에 올립니다
+2. [Vercel](https://vercel.com/new) 또는 [Netlify](https://app.netlify.com/start) 에서
+   "Import Project" → 이 저장소 선택
+3. 빌드 명령 `npm run build`, 배포 폴더 `dist` (자동 감지됨)
+4. 도메인 연결은 각 서비스의 Domains 설정에서 진행
+
+> **라우팅 방식**: 실제 경로(`/apps/hanmadi` 등)를 씁니다. 새로고침해도 깨지지
+> 않도록 `vercel.json`/`netlify.toml`에 SPA 리라이트 규칙이 들어 있습니다.
+> `base: '/'`(vite.config.ts)를 전제로 하므로 **서브폴더가 아닌 도메인 루트에
+> 배포해야 합니다.**
 
 ---
 
@@ -18,10 +38,10 @@ Apps 목록 카드, 상세 페이지, 상단 메뉴, 하단 목록이 **전부 �
 
 ```ts
 {
-  id: 'my-new-app',              // 주소가 됩니다 → /#/apps/my-new-app
+  id: 'my-new-app',              // 주소가 됩니다 → /apps/my-new-app
   name: '새 앱',
   tagline: '한 줄 소개',
-  icon: '🚀',                    // 이모지 또는 './icons/app.png'
+  icon: '🚀',                    // 이모지 또는 '/icons/app.png' (절대경로)
   type: 'mobile',                // 'web' | 'mobile' | 'desktop'
   status: 'released',            // 'released' | 'beta' | 'coming-soon'
   category: '유틸리티',
@@ -138,9 +158,13 @@ public/icons/hyunlab-memo.svg     ← 웹 서비스용 (직접 만든 아이콘)
 
 ```ts
 screenshots: [
-  { src: './screenshots/my-new-app/01.png', caption: '메인 화면 설명' },
+  { src: '/screenshots/my-new-app/01.png', caption: '메인 화면 설명' },  // 절대경로
 ]
 ```
+
+> ⚠️ **경로는 반드시 `/`로 시작해야 합니다.** `./icons/...` 처럼 상대경로로 쓰면
+> `/apps/xxx` 페이지에서 `/apps/icons/...`로 잘못 해석되어 깨집니다.
+> (해시 라우팅을 쓰던 이전 버전의 흔적이니 새로 추가할 때 주의하세요.)
 
 상세 페이지에서 좌우로 넘겨 볼 수 있고, 클릭하면 크게 보입니다.
 
@@ -151,7 +175,8 @@ screenshots: [
 ```
 src/
 ├─ data/apps.ts          ← ⭐ 앱 정보 (여기만 고치면 됩니다)
-├─ lib/router.tsx        해시 라우터
+├─ data/brand.ts         HYUNLAB 로고·브랜드 색
+├─ lib/router.tsx        실제 경로 라우터 (History API)
 ├─ components/
 │  ├─ ui/index.tsx       버튼·배지·섹션 등 공용 조각
 │  ├─ layout/            Header(메뉴) · Footer
@@ -196,3 +221,22 @@ src/
 ## 연락처 바꾸기
 
 메일 주소는 `src/pages/Simple.tsx` 상단의 `EMAIL` 상수 한 곳에 있습니다.
+
+---
+
+## 실제 도메인이 정해지면 할 일
+
+지금은 `index.html`의 공유 미리보기 이미지(`og:image`)가 `/icons/og.png`처럼
+루트 기준 경로로 되어 있습니다. 카카오톡·페이스북 등에서 링크 미리보기가
+제대로 뜨려면 **완전한 절대 주소**가 필요합니다.
+
+```html
+<!-- 지금 -->
+<meta property="og:image" content="/icons/og.png" />
+
+<!-- 도메인이 정해지면 -->
+<meta property="og:image" content="https://hyunlab.com/icons/og.png" />
+```
+
+`index.html`의 `og:title`, `og:description`도 실제 서비스 소개에 맞게
+다시 한번 검토해 주세요.

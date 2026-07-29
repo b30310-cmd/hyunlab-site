@@ -1,0 +1,85 @@
+<svg width="120" height="120" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    로딩 심볼
+
+    메모지가 떠오르고 → 체크가 그어지고 → 줄이 하나씩 채워집니다.
+    아이콘과 같은 그림을 쓰기 때문에 별도의 스피너보다 브랜드가 잘 남습니다.
+
+    사용법: <img src="./icons/hyunlab-memo-loading.svg" width="72" />
+  -->
+  <defs>
+    <linearGradient id="p" x1="114" y1="92" x2="398" y2="424" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9070" />
+      <stop offset="1" stop-color="#EE5B3C" />
+    </linearGradient>
+  </defs>
+
+  <!-- 메모지: 아주 살짝 위아래로 숨 쉬듯 움직입니다 -->
+  <g>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 -8; 0 0"
+      dur="2.4s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+      keyTimes="0; 0.5; 1"
+    />
+    <path
+      d="M160 92h142l96 98v188a46 46 0 0 1-46 46H160a46 46 0 0 1-46-46V138a46 46 0 0 1 46-46z"
+      fill="url(#p)"
+    />
+    <path d="M302 92l96 98h-96z" fill="#FFDCCF" />
+
+    <!-- 체크: 선이 그어졌다가 사라지기를 반복 -->
+    <path
+      d="M164 214l28 28 56-62"
+      stroke="#FFF"
+      stroke-width="24"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+      stroke-dasharray="130"
+    >
+      <animate
+        attributeName="stroke-dashoffset"
+        values="130; 0; 0; 130"
+        keyTimes="0; 0.35; 0.8; 1"
+        dur="2.4s"
+        repeatCount="indefinite"
+      />
+    </path>
+
+    <!-- 내용 줄: 순서대로 나타납니다 -->
+    <g fill="#FFF">
+      <rect x="164" y="286" width="172" height="20" rx="10" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0; 0; 0.82; 0.82; 0"
+          keyTimes="0; 0.4; 0.55; 0.85; 1"
+          dur="2.4s"
+          repeatCount="indefinite"
+        />
+      </rect>
+      <rect x="164" y="332" width="172" height="20" rx="10" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0; 0; 0.82; 0.82; 0"
+          keyTimes="0; 0.5; 0.65; 0.85; 1"
+          dur="2.4s"
+          repeatCount="indefinite"
+        />
+      </rect>
+      <rect x="164" y="378" width="110" height="20" rx="10" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0; 0; 0.82; 0.82; 0"
+          keyTimes="0; 0.6; 0.75; 0.85; 1"
+          dur="2.4s"
+          repeatCount="indefinite"
+        />
+      </rect>
+    </g>
+  </g>
+</svg>

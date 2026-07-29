@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+
+# 배포 토큰 등 비밀값 (실수로 커밋되지 않도록)
+.gh-token
+.env
+.env.local
+.vercel
+.netlify

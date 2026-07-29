@@ -1,0 +1,46 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    소셜 공유 이미지 (카카오톡·페이스북 등에 링크를 붙였을 때 보이는 그림)
+
+    ⚠️ 글자를 path가 아닌 text로 넣으면 서버에서 PNG로 바꿀 때
+       폰트가 없어 모양이 달라집니다.
+       그래서 여기서는 글자를 쓰지 않고, PNG로 만들 때 sharp가
+       시스템 폰트로 그리도록 별도 처리합니다. (scripts/build-icons.mjs)
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF6F2" />
+      <stop offset="1" stop-color="#FDE8E0" />
+    </linearGradient>
+    <linearGradient id="p" x1="0" y1="0" x2="284" y2="332" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9070" />
+      <stop offset="1" stop-color="#EE5B3C" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- 메모지 아이콘 -->
+  <g transform="translate(140 149) scale(1.0)">
+    <path
+      d="M160 92h142l96 98v188a46 46 0 0 1-46 46H160a46 46 0 0 1-46-46V138a46 46 0 0 1 46-46z"
+      transform="translate(-114 -92)"
+      fill="url(#p)"
+    />
+    <path d="M302 92l96 98h-96z" transform="translate(-114 -92)" fill="#FFDCCF" />
+    <path
+      d="M164 214l28 28 56-62"
+      transform="translate(-114 -92)"
+      stroke="#FFF"
+      stroke-width="24"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+    <g fill="#FFF" opacity=".82" transform="translate(-114 -92)">
+      <rect x="164" y="286" width="172" height="20" rx="10" />
+      <rect x="164" y="332" width="172" height="20" rx="10" />
+      <rect x="164" y="378" width="110" height="20" rx="10" />
+    </g>
+  </g>
+</svg>

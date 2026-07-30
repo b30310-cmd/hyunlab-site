@@ -245,11 +245,12 @@ export const APPS: AppEntry[] = [
   {
     id: 'hyunlab-memo',
     name: 'HYUNLAB Memo',
-    tagline: 'AI 메모 및 업무 메모',
+    tagline: '프로젝트별로 정리하는 업무 메모',
     description:
-      'HYUNLAB에서 새롭게 선보이는 웹 메모 서비스입니다. ' +
-      '설치도 가입도 없이 브라우저에서 바로 열어 쓸 수 있고, 저장 버튼 없이 자동으로 저장됩니다. ' +
-      '포스트잇처럼 띄워 두는 팝업 메모부터 체크리스트, 손그림, 알림까지 업무에 필요한 기능을 담았습니다.',
+      'HYUNLAB에서 만든 업무용 메모 앱입니다. ' +
+      '프로젝트별로 메모를 정리하고, 앱을 열면 바로 쓸 수 있는 스크래치패드로 시작해 ' +
+      '저장할 때 프로젝트를 골라 등록합니다. 팝업 메모, 18종 한글 글꼴, 손그림 주석, ' +
+      '일정 알림까지 업무에 필요한 기능을 담았고, 웹과 Windows 앱에서 동일하게 씁니다.',
     icon: '/icons/app-512.png',
 
     type: 'web',
@@ -260,18 +261,19 @@ export const APPS: AppEntry[] = [
     isNew: true,
     featured: true,
 
-    version: '1.0.0',
-    updatedAt: '2026-07-29',
+    version: '1.1.0',
+    updatedAt: '2026-07-30',
     webUrl: 'https://b30310-cmd.github.io/hyunlab-memo/app/',
     pwa: true,
     repo: 'https://github.com/b30310-cmd/hyunlab-memo',
 
     // 웹이 기본이지만 Windows 설치 버전도 함께 제공합니다.
+    // releases/latest/download/ 링크라 새 버전을 릴리스해도 계속 최신 파일을 가리킵니다.
     downloads: [
       {
         platform: 'Windows',
         store: 'direct',
-        url: 'https://github.com/b30310-cmd/hyunlab-memo/releases/download/v1.0.0/HYUNLAB-Memo-Setup-1.0.0.exe',
+        url: 'https://github.com/b30310-cmd/hyunlab-memo/releases/latest/download/HYUNLAB-Memo-Setup.exe',
         size: '80.2MB',
         requirement: 'Windows 10 이상 (64bit)',
         label: 'Windows 설치 버전',
@@ -279,26 +281,38 @@ export const APPS: AppEntry[] = [
     ],
 
     features: [
-      { icon: '📌', title: '팝업 메모', desc: '바탕화면에 붙여 두고 항상 위에 고정' },
-      { icon: '✅', title: '체크리스트', desc: '체크하면 취소선과 진행률 자동 표시' },
+      { icon: '🗂️', title: '프로젝트 관리', desc: '메모를 프로젝트별로 정리, 드래그로 이동' },
+      { icon: '📝', title: '스크래치패드', desc: '앱을 열면 바로 쓰는 임시 작업 공간' },
+      { icon: '📌', title: '팝업 메모', desc: '여러 개를 동시에 띄우고 항상 위에 고정' },
+      { icon: '🔤', title: '18종 한글 글꼴', desc: '업무용·바탕체·손글씨·제목용, 검색·즐겨찾기' },
+      { icon: '😊', title: '특수 이모티콘', desc: '검색·즐겨찾기·직접 추가' },
+      { icon: '✅', title: '체크리스트 & 태그', desc: '체크하면 취소선과 진행률 자동 표시' },
       { icon: '🔔', title: '일정 알림', desc: '매일·매주·매월 반복 알림' },
-      { icon: '🎨', title: '다양한 배경색', desc: '8가지 기본색 + 직접 추가' },
-      { icon: '🔤', title: '다양한 글꼴', desc: 'Pretendard·SUIT 등 8종' },
-      { icon: '✨', title: '특수문자', desc: '카테고리별로 골라 넣기' },
-      { icon: '😊', title: '이모지', desc: '검색·최근 사용·즐겨찾기' },
-      { icon: '💾', title: '자동 저장', desc: '저장 버튼 없이 입력 즉시 보관' },
+      { icon: '✏️', title: '손그림 주석', desc: '펜·형광펜·화살표·도형으로 표시' },
     ],
 
     screenshots: [
       { src: '/screenshots/hyunlab-memo/01-main.png', caption: '메인 화면 — 프로젝트별로 메모를 정리합니다' },
-      { src: '/screenshots/hyunlab-memo/02-checklist.png', caption: '체크리스트 — 완료하면 취소선과 진행률이 표시됩니다' },
-      { src: '/screenshots/hyunlab-memo/04-drawing.png', caption: '손그림 메모 — 글 위에 펜·형광펜·화살표로 표시' },
-      { src: '/screenshots/hyunlab-memo/03-design.png', caption: '꾸미기 — 배경색·스킨·폰트·테두리 변경' },
-      { src: '/screenshots/hyunlab-memo/05-skins.png', caption: '다양한 스킨 — 줄노트·모눈·점선·포스트잇' },
+      { src: '/screenshots/hyunlab-memo/02-scratchpad.png', caption: '스크래치패드 — 앱을 열면 바로 쓰는 임시 작업 공간' },
+      { src: '/screenshots/hyunlab-memo/03-fonts.png', caption: '18종 한글 글꼴 — 실시간 미리보기로 골라 씁니다' },
+      { src: '/screenshots/hyunlab-memo/04-checklist.png', caption: '체크리스트 — 완료하면 취소선과 진행률이 표시됩니다' },
+      { src: '/screenshots/hyunlab-memo/05-drawing.png', caption: '손그림 주석 — 글 위에 펜·형광펜·화살표로 표시' },
       { src: '/screenshots/hyunlab-memo/06-popup.png', caption: '팝업 메모 — 작은 창으로 띄워 두고 사용' },
     ],
 
     changelog: [
+      {
+        version: '1.1.0',
+        date: '2026-07-30',
+        changes: [
+          '프로젝트 기반 메모 관리 추가 (드래그·우클릭·편집 화면에서 이동)',
+          '스크래치패드(임시 작업 공간) 추가 — 저장 시 프로젝트 지정',
+          '팝업 메모 개선 — 독립 창으로 여러 개 동시에 사용',
+          '한글 글꼴 18종으로 확장 (업무용·바탕체·손글씨·제목용), 검색·즐겨찾기 지원',
+          '특수 이모티콘 기능 추가 (검색·즐겨찾기·직접 추가)',
+          '메모 검색(제목·본문·태그) 개선',
+        ],
+      },
       {
         version: '1.0.0',
         date: '2026-07-29',
